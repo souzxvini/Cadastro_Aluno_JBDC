@@ -15,6 +15,15 @@ public class Aluno {
 		
 	}
 	
+	
+	
+	public Aluno(Integer id) {
+		super();
+		this.id = id;
+	}
+
+
+
 	public Aluno(String nome, String email) {
 		super();
 		this.nome = nome;
@@ -23,14 +32,15 @@ public class Aluno {
 	public Aluno() {
 		super();
 	}
-
-
+	
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -43,6 +53,7 @@ public class Aluno {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	
 	
 	

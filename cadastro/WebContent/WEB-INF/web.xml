@@ -10,9 +10,5 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   
-  <dependency>
-    <groupId>com.microsoft.sqlserver</groupId>
-    <artifactId>mssql-jdbc</artifactId>
-    <version>10.2.0.jre11</version>
-</dependency>
+   
 </web-app>
