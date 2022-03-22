@@ -19,9 +19,11 @@
 				<input type="text" name="nome"   value="${aluno.nome}"/><br /> <label>Email:</label>
 				<input type="email" name="email"  value="${aluno.email}" /><br /><br />
 				
-				<a href="/cadastro/entrada?acao=listar">Voltar</a>
 				<input type="hidden" name="acao" value="atualizar">
-				<input type="submit"> 
+				<input type="submit" value="atualizar"> 
+				<a href="/cadastro/entrada?acao=listar">Voltar</a>
+				
+				
 
 				<br>
 				

@@ -17,11 +17,12 @@
 				 <input type="hidden" name="id" value="${aluno.id }">
 				 
 				<label>Name:</label> 
-				<input type="text" name="nome"  /><br /> <label>Email:</label>
-				<input type="email" name="email"  /><br /><br />
+				<input type="text" name="nome" required /><br /> <label>Email:</label>
+				<input type="email" name="email" required /><br /><br />
 				
 				<input type="submit" name="acao" value="inserir">
-				<input type="submit" name="acao" value="listar">
+<!-- 				<input type="submit" name="acao" value="listar"> -->
+				<a href="/cadastro/entrada?acao=listar">Listar alunos</a>
 				
 
 				<br>
