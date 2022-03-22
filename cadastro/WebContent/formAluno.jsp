@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div align="center">
-		<form method="post" action="${linkEntradaServlet}" >
+		<form method="post" action="${linkEntradaServlet}"  >
 			
 				<h1>Cadastro de Alunos</h1>
 			

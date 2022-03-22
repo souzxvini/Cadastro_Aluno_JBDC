@@ -23,10 +23,6 @@
 				<input type="submit" value="atualizar"> 
 				<a href="/cadastro/entrada?acao=listar">Voltar</a>
 				
-				
-
-				<br>
-				
 		</form>
 	</div>
 </body>
