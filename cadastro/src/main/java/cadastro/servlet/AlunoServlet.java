@@ -18,14 +18,6 @@ import cadastro.modelo.Aluno;
 public class AlunoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//
-//		RequestDispatcher rd = request.getRequestDispatcher("/formAluno.jsp");
-//		rd.forward(request, response);
-//		
-//	}
-
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -42,7 +34,7 @@ public class AlunoServlet extends HttpServlet {
 			case "excluir":
 				excluir(request, response);
 				break;
-			case "adicionarAluno":
+			case "cadastroAluno":
 				formAluno(request, response);
 				break;
 			case "editar":
@@ -111,55 +103,33 @@ public class AlunoServlet extends HttpServlet {
 		dp.forward(request, response);
 	}
 	
+	//vai para a tela de editar o aluno
 	public void showEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		String paramId = request.getParameter("id");
-		Integer id = Integer.valueOf(paramId);
-		
+		int id = Integer.parseInt( request.getParameter("id")); 
 
 		AlunoDAO alunoDAO = new AlunoDAO();
 
 		Aluno aluno = alunoDAO.selecionarPorId(id);
-
-		// chamando jsp
 		
 		request.setAttribute("aluno", aluno);
-//		return "forward:formEditarAluno.jsp";
-		RequestDispatcher dp = request.getRequestDispatcher("/formEditarAluno.jsp");
-		
+		RequestDispatcher dp = request.getRequestDispatcher("formEditarAluno.jsp");
 		dp.forward(request, response);
 		
 	}
 	public void atualizar(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
 		
-		
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
-		String paramId = request.getParameter("id");
-		Integer id = Integer.valueOf(paramId);
+		int id = Integer.parseInt( request.getParameter("id"));
 
 		AlunoDAO alunoDAO = new AlunoDAO();
-		Aluno aluno = alunoDAO.selecionarPorId(id);
-
-		aluno.setNome(nome);
-		aluno.setEmail(email);
-
-//		return "sendRedirect:listar";
-//		String nome = request.getParameter("nome");
-//		String email = request.getParameter("email");
-//		
-//
-//		AlunoDAO alunoDAO = new AlunoDAO();
-//		Aluno aluno = alunoDAO.selecionarPorId(id);
-//
-//		aluno.setNome(nome);
-//		aluno.setEmail(email);
-//		
-//		
-		RequestDispatcher dp = request.getRequestDispatcher("/listaAlunos.jsp");
-		dp.forward(request, response);
+		Aluno aluno = new Aluno(id, nome, email);
 		
+		alunoDAO.atualizar(aluno);
+		
+		response.sendRedirect("/cadastro/entrada?acao=listar");
 		
 	}
 	

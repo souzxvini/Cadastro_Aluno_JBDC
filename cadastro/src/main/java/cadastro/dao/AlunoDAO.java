@@ -22,10 +22,9 @@ public class AlunoDAO {
 	private String INSERIR_ALUNO = "INSERT INTO ALUNOS (nome, email) values (?, ?);";
 	private String EXCLUIR_ALUNO = "DELETE FROM ALUNOS WHERE ID = ?";
 	private String SELECIONAR_ALUNOS = "SELECT * FROM ALUNOS;";
-	private String SELECIONAR_ALUNO_PELO_ID = "SELECT FROM ALUNOS WHERE ID = ?;";
+	private String SELECIONAR_ALUNO_PELO_ID = "SELECT * FROM ALUNOS WHERE ID = ?;";
 	private String ATUALIZAR_ALUNO = "UPDATE ALUNOS SET NOME= ?, EMAIL= ? WHERE ID = ?;";
 	
-	private static List<Aluno> alunos = new ArrayList<>();
 	// Estabelecer a Connection
 	protected Connection getConnection() {
 		Connection connection = null;
@@ -103,18 +102,18 @@ public class AlunoDAO {
 
 	public Aluno selecionarPorId(int id) throws SQLException {
 		
+		Aluno aluno = new Aluno();
 		try (Connection connection = getConnection()) {
-			Aluno aluno = null;
+			
 			try (PreparedStatement stm = connection.prepareStatement(SELECIONAR_ALUNO_PELO_ID)) {
 				stm.setInt(1, id);
 				
 				ResultSet rs = stm.executeQuery();
 
 				while (rs.next()) {
-					String nome = rs.getString("nome");
-					String email = rs.getString("email");
-
-					 aluno = new Aluno(nome, email);
+					aluno.setId(rs.getInt("id"));
+					aluno.setNome(rs.getString("nome"));
+					aluno.setEmail(rs.getString("email"));
 				}
 
 			} catch (SQLException e) {
@@ -125,7 +124,7 @@ public class AlunoDAO {
 		}
 	}
 
-	public void atualizar(Aluno aluno) throws SQLException {
+	public void atualizar(Aluno aluno) {
 		
 		try (Connection connection = getConnection()) {
 			try (PreparedStatement stm = connection.prepareStatement(ATUALIZAR_ALUNO)) {
@@ -136,28 +135,9 @@ public class AlunoDAO {
 				
 				stm.executeUpdate();
 			}
-		}
-	}
-
-	public boolean existe(Aluno aluno) {
-		boolean achou = false;
-		try (Connection connection = getConnection();) {
-			try (PreparedStatement stm = connection.prepareStatement("Select * from alunos where id =	?;")) {
-				;
-				stm.setLong(1, aluno.getId());
-				ResultSet rs = stm.executeQuery();
-				if (rs.next()) {
-					achou = true;
-				}
-				stm.close();
-				connection.close();
-			} catch (Exception e) {
+		}catch(SQLException e) {
 				e.printStackTrace();
 			}
-			
-		} catch(SQLException e) {
-			e.printStackTrace();
-			
-		}return achou;
 	}
+
 }

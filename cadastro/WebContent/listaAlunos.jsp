@@ -36,7 +36,7 @@
 				</c:forEach>
 			 </tbody>
 		</table>
-		<a href="/cadastro/entrada?acao=adicionarAluno">Adicionar novo aluno</a>
+		<a href="/cadastro/entrada?acao=cadastroAluno">Adicionar novo aluno</a>
 
 	</div>
 

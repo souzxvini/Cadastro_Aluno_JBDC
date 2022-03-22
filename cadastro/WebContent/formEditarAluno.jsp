@@ -10,21 +10,18 @@
 </head>
 <body>
 	<div align="center">
-		<form method="post" action="${linkEntradaServlet}" >
+		<form method="get" action="${linkEntradaServlet}" >
 			
 				<h1>Editar Aluno</h1>
-
+				
+                <input type="hidden" name="id"  value="${aluno.id}">
 				<label>Name:</label> 
 				<input type="text" name="nome"   value="${aluno.nome}"/><br /> <label>Email:</label>
 				<input type="email" name="email"  value="${aluno.email}" /><br /><br />
-				<input type="hidden" name="id"  value="${aluno.id}">
-
-<!-- 				<a href="/cadastro/entrada?acao=atualizar">Atualizar</a> -->
+				
 				<a href="/cadastro/entrada?acao=listar">Voltar</a>
 				<input type="hidden" name="acao" value="atualizar">
 				<input type="submit"> 
-				
-<!-- 				<a href="/cadastro/entrada?acao=listar" >Listar Alunos</a> -->
 
 				<br>
 				
